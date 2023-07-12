@@ -1,0 +1,60 @@
+<!-- Linking Style Sheet -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+    <!-- Input Section -->
+    <div class="row ">
+        <div class="col-sm ">
+            <form method="POST" action="/api/v1/habit/createHabit">
+                <div class="input-section">
+                <!-- To get Input -->
+                <label for="title">Habit title</label>
+                <input type="text" name="title" placeholder="Enter your habit" required>
+                <label for="title">Description</label>
+                <input type="text" name="desc" placeholder="Description">
+                
+                
+                <!-- Add btn -->
+                <button type="submit" class="btn success" >Add Habit</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm">
+        <ul id="list">
+           
+            <% if (habit_list.length>0) {%>
+                <% for (let habit of habit_list) { %>
+                <li class="list-item new-box">
+                    <card>
+
+                        <div class="card-body">
+                            
+                            <!-- <input type="checkbox" name="habits[]" value="<%= habit._id %>"  > -->
+                            <label for="tasks[]"><%= habit.title %></label>
+                            <% 
+                            let months = ["", "Jan", "Feb", "March", "Apr", "May", "June", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+                            let startDate = habit.dates[0].date;
+                            let start = months[startDate.trim().split(" ")[0]] + " " + startDate.substring(2);
+                        %>
+                            <span class="small-text"><%= start %></span>
+                            <a href="/deleteHabit/?id=<%= habit._id %>" ><img src="images/cross.png" class="delete" alt="delete-btn" /></a>
+                            <br><span class="small-text"><%= habit.desc %></span>
+                        </div>
+                        <div class="card-footer">
+                           
+                            <span class="small-text">habit current streak</span>
+                            <span class="small-text">habit longest streak</span>
+                            <span class="small-text">habit total completion</span>
+                            <span class="badge ">habit view</span>
+                        </div>
+                    </card>
+                </li>
+                <% } %>
+                <% } %>
+                
+        </ul>
+        
+    </div>
+
+   
+

@@ -1,0 +1,58 @@
+<!-- Linking Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<!-- Linking Style Sheet -->
+<!-- Linking Style Sheet -->
+    <link rel="stylesheet" href="/css/style.css">
+<div class="col-12">
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Habit Title</th>
+          <% for (let date of weeklyDates) { %>
+          <th scope="col"><%= date %></th>
+           <% } %>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <% for  (let i=0; i< habit_list.length ; i++)  { let habit=habit_list[i] ; %>
+         
+        <tr class="table-success">
+          <th scope="row"><%= i+1 %></th>
+          <td> <%= habit.title %></td>
+          <% for (let date of weeklyDates) { %>
+          <td>
+            <% 
+            let found;
+            let status;
+            habit.dates.find((item) => {
+                if (item.date === date) {
+                    found = true;
+                    status = item.complete;
+                }
+            });
+          %>
+          <a href="/api/v1/habit/toggleStatus/?id=<%= habit._id %>&date=<%= date %>" class="mark-status">
+            <% if (found && status=='y') { %>
+              <i class="bi bi-check2-circle"></i>
+              <i class="fas fa-check-circle" style="color: rgb(130, 189, 107)"></i>
+            <% } else if (found && status=='n') { %>
+                <i class="bi bi-x-circle" style="color: rgb(241, 121, 109)"></i>
+            <% } else { %>
+                <i class="bi bi-circle"></i>
+            <% } %></td>
+          </a>
+      <% } %>
+    
+          
+          <% } %>
+        </tr>
+        
+      </tbody>
+  </table>
+</div>
+
+
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
