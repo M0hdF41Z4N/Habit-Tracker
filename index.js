@@ -6,6 +6,8 @@ const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 // Importing body parser
 const bodyParser = require('body-parser');
+// Port number
+const Port = process.env.PORT || 8000
 
 // Initializing App
 const app = express();
@@ -41,7 +43,7 @@ app.use(express.static("assets"));
 const db = require('./config/db');
 
 // Listening to the server
-app.listen(8000, function(error){
+app.listen(Port, function(error){
     if (error) {
           console.log(error);
     }
