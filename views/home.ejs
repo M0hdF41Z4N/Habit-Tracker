@@ -3,14 +3,19 @@
     
 
     <!-- Input Section -->
+    <!-- Row -->
     <div class="row ">
+        <!-- Column for Input section -->
         <div class="col-sm ">
-            <form method="POST" action="/api/v1/habit/createHabit">
+            <!-- Form to create Habit -->
+            <form method="POST" action="/createHabit">
                 <div class="input-section">
-                <!-- To get Input -->
                 <label for="title">Habit title</label>
+                <!-- To get title of habit -->
                 <input type="text" name="title" placeholder="Enter your habit" required>
+                
                 <label for="title">Description</label>
+                <!-- To get description of habit -->
                 <input type="text" name="desc" placeholder="Description">
                 
                 
@@ -19,42 +24,98 @@
             </form>
         </div>
     </div>
+    <!-- Column to display all habits -->
     <div class="col-sm">
+        <!-- List of habits -->
         <ul id="list">
-           
+            <% // Checking if habits are available or not%>
             <% if (habit_list.length>0) {%>
                 <% for (let habit of habit_list) { %>
+                    <!-- List Items -->
                 <li class="list-item new-box">
+                    <!-- Card -->
                     <card>
-
+                        <!-- Card Body -->
                         <div class="card-body">
                             
                             <!-- <input type="checkbox" name="habits[]" value="<%= habit._id %>"  > -->
-                            <label for="tasks[]"><%= habit.title %></label>
+                            <label for="habits[]" class="text-dark"><%= habit.title %></label>
+                            <% // To get the starting date of current habit %>
+
                             <% 
                             let months = ["", "Jan", "Feb", "March", "Apr", "May", "June", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
                             let startDate = habit.dates[0].date;
                             let start = months[startDate.trim().split(" ")[0]] + " " + startDate.substring(2);
                         %>
-                            <span class="small-text"><%= start %></span>
+                            <!-- Delete Button  -->
                             <a href="/deleteHabit/?id=<%= habit._id %>" ><img src="images/cross.png" class="delete" alt="delete-btn" /></a>
+                            <!-- Habit Description -->
                             <br><span class="small-text"><%= habit.desc %></span>
                         </div>
+                        <!-- End of Card Body -->
+
+                        <!-- Card Footer -->
                         <div class="card-footer">
-                           
-                            <span class="small-text">habit current streak</span>
-                            <span class="small-text">habit longest streak</span>
-                            <span class="small-text">habit total completion</span>
-                            <span class="badge ">habit view</span>
+
+                            <% // To get current streak ,longest streak , total number of days habit completed etc %>
+
+                            <% let totalCount = 0, totalDays = habit.dates.length-1, 
+                            maxStreak =0 ,currStreak = 0; %> 
+                            
+                            <% // 1. First Sorting Dates %>
+                            
+                            <% habit.dates.sort(function(a,b){
+                                    return new Date(b.date) - new Date(a.date);
+                                });
+
+                                // reversing array or typically converting in increasing order
+                                habit.dates.reverse();
+                                    %>
+                                    <% // Counting current and longest streak below with help of loop %>
+                                    <% for (let i=0;i< habit.dates.length-1;i++) { %>
+                                        <% if (habit.dates[i].complete == 'y')  { %>
+                                            <% totalCount++; currStreak++;  %>
+                                        <% } else { %>
+                                            <% maxStreak = Math.max(currStreak,maxStreak); currStreak=0;}  %>
+                                    <% } maxStreak = Math.max(currStreak,maxStreak); %>
+                            <!-- Current Streak -->
+                            <% if (currStreak < 7 ) { %>
+                                <span class="small-text badge rounded-pill text-bg-warning ">            
+                            <% } else { %>
+                                <span class="small-text badge rounded-pill text-bg-success ">
+                            <% } %>
+                            <%= currStreak %> days</span>
+                            <!-- longest Streak -->
+                                <% if (maxStreak == 0) { %>
+                                    <span class="small-text badge rounded-pill text-bg-danger ">            
+                                <% } else if (maxStreak >= 21) { %>
+                                    <span class="small-text badge rounded-pill text-bg-success ">
+                                <% } else { %>
+                                    <span class="small-text badge rounded-pill text-bg-warning ">
+                                    <% } %><%= maxStreak %> best</span>
+                            <!-- Total Completion Days -->
+                            <% if (totalDays == 0) { %>
+                                <span class="small-text badge rounded-pill text-bg-danger ">             
+                            <% } else if (totalDays/totalCount < 2) { %>
+                                <span class="small-text badge rounded-pill text-bg-success ">
+                            <% } else { %>
+                                <span class="small-text badge rounded-pill text-bg-warning ">
+                                <% } %>
+                            <%= totalCount %>/<%= totalDays %></span>
+                            <span class="small-text">Created on <%= start %></span>
+                            
                         </div>
+                        <!-- End Card Footer -->
                     </card>
+                    <!-- End of Card -->
                 </li>
+                <!-- End list item -->
                 <% } %>
                 <% } %>
-                
         </ul>
-        
+        <!-- End of list -->
     </div>
+    <!-- End : Column to display all habits  -->
 
    
 

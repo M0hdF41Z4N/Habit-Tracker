@@ -3,16 +3,11 @@
     padding: 0;
 }
 
-.border-solid {
-    border: 1px solid black;
-}
+
 
 
     
-.nav-btn:hover {
-    background-color: skyblue;
-    color: white;
-}
+
 
 input[type="text"] {
     padding: 0.5rem;
@@ -31,12 +26,6 @@ input[type="text"] {
     width: 40vw;
 }
 
-.summary-header {
-    font-family: 'Courier New', Courier, monospace;
-    color: grey;
-    text-align: center;
-    margin-top:1rem;
-}
 
 .container {
     width: 100vw;   
@@ -63,8 +52,6 @@ input[type="text"] {
     justify-self: space-between;
     color: grey;
 }
-
-
 
 
 /* Defining size for add btn image */
@@ -113,9 +100,7 @@ input[type="text"] {
     font-size: 0.7rem;
 }
 
-#dueDate {
-    width:9.5rem;
-}
+
   
 /* Green */
 .success {
@@ -128,56 +113,17 @@ background-color: #04AA6D;
 color: white;
 }
 
-/* Styling category in list */
-#category , #dueDate  {
-    width:11rem;
-    font-size: 1rem;
-    /* margin: 0.6rem 0rem; */
-    padding: 0.5rem;
-    position: relative;
-    color: grey;
-}
-
 .card-body {
     margin-bottom: 0.5rem;
 }
 
-/* Style for different type of tasks */
-.Personal {
-    background-color: blue;
-}
-
-.Work {
-    background-color: orange;
-}
-.Hobby {
-    background-color: aquamarine;
-}
-.School {
-    background-color: blueviolet;
-}
-.Cleaning {
-    background-color: yellowgreen;
-}
-
-.Others {
-    background-color: red;
-}
 
 /* label in input file */
 .input-section label {
     margin: 0.5rem 0px;
 }
 
-/* Styling badge */
-.badge {
-    color: white;
-    padding: 4px 8px;
-    margin: 0.5rem;
-    text-align: center;
-    border-radius: 5px;
-    
-  }
+
 
 
 /* Styling List */
@@ -223,13 +169,7 @@ color: white;
     font-weight: 900;
 }
 
-/* task count styling */
-#count {
-    color:orange;
-    font-weight: 900;
-    margin: 1rem;
-    display: block;
-}
+
 
 
 /* Adding Responsiveness */
