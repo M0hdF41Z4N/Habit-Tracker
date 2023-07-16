@@ -11,7 +11,7 @@ module.exports.home = async (req,res)=> {
      }
     catch(err) {
         // For debugging purpose
-        console.log('Error in homeController: ', error);
+        console.log('Error in homeController: ', err);
         return;
     }
 }

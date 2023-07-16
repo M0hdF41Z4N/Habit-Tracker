@@ -23,7 +23,7 @@ app.set('layout extractScripts',true);
 let jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
-app.use(bodyParser.urlencoded())
+app.use(urlencodedParser);
 app.use(jsonParser)
 
 
@@ -35,7 +35,7 @@ app.set('view engine','ejs');
 // Setting up views path
 app.set('views',path.join(__dirname,'views'));
 
-app.use(express.urlencoded());
+
 // Setting up assets
 app.use(express.static("assets"));
 
