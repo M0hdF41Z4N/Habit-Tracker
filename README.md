@@ -3,7 +3,7 @@
 
 Habit Tracker application based on Node JS and MongoDB.
 
-###Features
+### Features
 1. Create / Delete Habit.
 2. Toggle status of Habit of past 7 days.
 3. Track status of Habit of past 7 days.
