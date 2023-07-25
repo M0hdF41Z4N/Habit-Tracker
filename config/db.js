@@ -1,7 +1,7 @@
 // Importing mongoose
 const mongoose = require('mongoose');
 
-const uri = "mongodb+srv://root:toor@cluster0.qghc4gy.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://username:password@cluster0.qghc4gy.mongodb.net/?retryWrites=true&w=majority";
 
 main().catch(err => console.log(err));
 
